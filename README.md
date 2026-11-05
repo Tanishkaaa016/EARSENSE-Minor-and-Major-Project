@@ -1,87 +1,162 @@
-# EarSense: Wearable Ear-Mounted EEG System for P300 Detection
+# EarSense: Development of a Reduced-Channel Wearable Ear-Based EEG System for P300 Detection
 
-**Minor and Major Project | Biomedical Engineering**
+**Minor and Major Project | Biomedical Engineering | SRM Institute of Science and Technology**
 
-## Overview
+## 1. Project Overview
 
-EarSense is a biomedical engineering project focused on the design and feasibility evaluation of a wearable, ear-mounted Electroencephalography (EEG) system for P300 Event-Related Potential (ERP) detection.
+EarSense is a biomedical engineering research and development project focused on developing a compact, wearable, ear-based Electroencephalography (EEG) system for detecting and classifying P300 Event-Related Potentials (ERPs).
 
-Conventional EEG systems generally rely on multiple scalp electrodes and dedicated acquisition setups. EarSense explores the possibility of acquiring meaningful EEG activity through a reduced number of electrodes positioned around the ear, with the long-term aim of developing a compact and wearable alternative.
+Conventional EEG systems typically require multiple scalp electrodes and dedicated acquisition setups. EarSense investigates whether meaningful P300-related information can be captured using a reduced number of electrodes positioned around the ear, offering a potential pathway towards more compact and wearable EEG acquisition.
 
-The project integrates EEG signal processing, machine learning, electronic circuit design, and PCB development to investigate the feasibility of ear-proximal EEG for wearable brain monitoring.
+The project integrates biological EEG validation, electrode and hardware design, signal processing, feature selection, and machine-learning-based classification.
 
-## Objectives
+The central objective is to determine the minimum effective electrode configuration and signal-processing pipeline required for reliable P300 detection, and subsequently translate these experimentally validated requirements into a wearable hardware system.
 
-- Explore reduced-channel, ear-mounted EEG acquisition for P300 detection.
-- Analyse EEG signals and identify P300-related activity.
-- Develop machine learning approaches to distinguish P300 and non-P300 responses.
-- Evaluate ear-proximal EEG signals against conventional scalp EEG recordings.
-- Design and simulate the electronic circuitry required for the EEG acquisition system.
-- Develop a PCB layout for the proposed wearable EEG hardware.
+## 2. Research Objectives
 
-## Project Methodology
+- Investigate the biological feasibility of detecting P300 responses using ear-based EEG.
+- Optimise electrode configurations to identify the minimum effective number of channels.
+- Evaluate electrode impedance, signal quality, contact stability, and signal-to-noise characteristics.
+- Develop an independent EEG preprocessing and artifact-handling pipeline.
+- Extract and select informative P300-related signal features.
+- Compare machine-learning models for target and non-target classification.
+- Translate validated biological and algorithmic requirements into a compact EEG acquisition circuit and wearable PCB design.
+- Develop and evaluate an integrated ear-mounted EEG prototype.
 
-The project involves two interconnected components:
+## 3. Proposed Methodology
 
-### 1. EEG Signal Processing and Machine Learning
+The project follows a sequential research and engineering workflow:
 
-- EEG data exploration and preprocessing.
-- Analysis of P300 Event-Related Potentials.
-- Feature extraction and signal characterisation.
-- Machine learning-based P300 and non-P300 classification.
-- Evaluation using classification performance and waveform comparisons.
+### A. Biological Validation and P300 Detection
 
-### 2. Electronic Circuit and PCB Development
+- Establish a controlled P300 experimental paradigm.
+- Analyse target and non-target EEG responses.
+- Evaluate P300 amplitude, latency, waveform differences, signal quality, and signal-to-noise characteristics.
+- Establish the biological feasibility of P300 detection.
 
-- Designing the electronic circuitry for the proposed EEG acquisition system.
-- Circuit simulation and functional verification.
-- PCB layout design and component placement.
-- Evaluating the hardware design for integration into a compact, wearable form factor.
+### B. Electrode Configuration and Channel Optimisation
 
-## Technologies and Tools
+- Investigate progressively reduced electrode configurations.
+- Evaluate individual channel contributions.
+- Compare configurations based on P300 detectability, signal quality, and classification performance.
+- Identify the minimum effective electrode configuration.
 
-- Python
-- Jupyter Notebook
-- EEG Signal Processing
-- Machine Learning
-- Biomedical Instrumentation
-- Electronic Circuit Simulation
-- PCB Design
+### C. Signal Processing and Artifact Handling
 
-## Repository Structure
+Develop an independent EEG processing pipeline:
 
-```text
-EARSENSE-Minor-and-Major-Project/
-│
-├── p300.ipynb
-│
-└── README.md
-```
+**Raw EEG → Signal Quality Assessment → Filtering → Artifact Handling → Epoch Segmentation → Baseline Correction → Feature Extraction → Feature Selection → Classification**
 
-Additional hardware design files, simulation outputs, and PCB layouts will be added as development progresses.
+The pipeline addresses baseline drift, power-line interference, high-frequency noise, signal instability, and motion-related artifacts.
 
-## Current Progress
+Potential artifacts include eye blinks, facial muscle activity, jaw movement, head movement, and electrode displacement.
 
-The project is progressing across both software and hardware development.
+### D. Feature Extraction and Selection
 
-- Working on P300 EEG signal analysis and computational evaluation.
-- Exploring reduced-channel ear-proximal EEG for P300 detection.
-- Working on electronic circuit simulation and verification.
-- Developing the PCB design for the proposed wearable EEG system.
+Investigate relevant signal characteristics, including:
 
-## Future Work
+- P300 peak amplitude and latency.
+- Mean amplitude within selected time windows.
+- Signal slope and waveform area.
+- Statistical features such as mean, variance, standard deviation, skewness, and kurtosis.
+- Relevant frequency-domain and signal-power characteristics.
 
-- Refine the EEG preprocessing and classification pipeline.
-- Complete circuit simulation and PCB design.
-- Fabricate and assemble the PCB.
-- Integrate the electronic hardware with the electrode acquisition setup.
-- Test the prototype using EEG recordings.
-- Evaluate the performance and feasibility of the complete wearable system.
+Feature-selection approaches may include Mutual Information, Recursive Feature Elimination, Random Forest feature importance, and dimensionality-reduction methods.
 
-## Project Significance
+### E. Machine Learning and Classification
 
-EarSense aims to explore a more compact approach to EEG acquisition by investigating the feasibility of detecting P300 brain responses using electrodes positioned around the ear.
+Evaluate computationally efficient classification algorithms for distinguishing target and non-target P300 responses:
 
-By combining biomedical signal analysis with electronic circuit and PCB development, the project seeks to bridge computational EEG research and wearable biomedical instrumentation.
+- Linear Discriminant Analysis (LDA)
+- Support Vector Machine (SVM)
+- Random Forest
 
----
+Model performance will be assessed using accuracy, precision, recall, F1-score, and confusion matrices.
+
+### F. Hardware Design and PCB Development
+
+Translate the experimentally validated channel and processing requirements into the hardware architecture.
+
+The hardware development phase involves:
+
+- EEG acquisition circuit design.
+- Signal conditioning and amplification.
+- Analog filtering.
+- Analog-to-Digital Conversion (ADC) integration.
+- Microcontroller-based processing.
+- Communication and power-management considerations.
+- Circuit simulation and verification.
+- PCB layout design and component integration.
+
+The hardware architecture will be guided by the validated electrode configuration and system requirements rather than an arbitrary predetermined channel count.
+
+### G. Wearable Prototype Development and Evaluation
+
+The final system will integrate the electrode arrangement, acquisition electronics, and wearable mechanical design.
+
+Evaluation will consider biological performance, signal quality, classification performance, hardware stability, communication, power requirements, and wearability.
+
+## 4. Development Structure
+
+### Minor Project – Research and System Requirement Validation
+
+Focuses on establishing the biological and algorithmic requirements of EarSense.
+
+Key activities:
+- Literature review and experimental design.
+- P300 EEG acquisition and biological validation.
+- Electrode and channel optimisation.
+- Signal preprocessing and artifact analysis.
+- Feature extraction and selection.
+- Machine-learning classification.
+- Model validation and identification of the minimum effective system.
+
+**Expected outcome:** A validated set of requirements defining the electrode configuration, channel count, signal-processing stages, relevant features, and suitable classification approach.
+
+### Major Project – Hardware Development and System Integration
+
+Focuses on translating the validated requirements into a functional wearable EEG system.
+
+Key activities:
+- Electrode integration and mechanical design.
+- EEG acquisition circuitry.
+- Circuit simulation and PCB development.
+- Signal conditioning, amplification, and filtering.
+- ADC and microcontroller integration.
+- Communication and power management.
+- Prototype development and integrated system testing.
+
+**Expected outcome:** A functional wearable EarSense prototype based on experimentally validated biological and algorithmic requirements.
+
+## 5. Current Development Status
+
+The project is progressing across computational analysis and hardware development.
+
+- P300 EEG analysis and signal-processing workflow.
+- Investigation of reduced-channel ear-based EEG.
+- Exploration of P300 classification approaches.
+- Electronic circuit design and simulation.
+- PCB design and hardware architecture development.
+
+Further development will focus on completing the hardware design, prototype fabrication, integration, and experimental evaluation.
+
+## 6. Expected Research Contribution
+
+EarSense proposes an integrated approach to wearable EEG development by connecting biological validation, channel optimisation, signal processing, feature selection, machine-learning classification, and hardware engineering.
+
+Rather than treating these as independent components, the project follows a sequential design approach:
+
+1. Biological analysis determines what signal information is available.
+2. Channel optimisation determines where and with how many electrodes it can be captured.
+3. Feature selection identifies the information necessary for classification.
+4. Machine-learning evaluation determines how efficiently the information can be interpreted.
+5. Hardware development translates the validated requirements into a wearable system.
+
+The broader aim is to investigate a practical, reduced-channel approach to P300 detection through ear-based EEG acquisition.
+
+## 7. Project Information
+
+| Category | Details |
+|---|---|
+| Project | EarSense |
+| Project Type | Minor and Major
